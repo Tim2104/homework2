@@ -25,8 +25,7 @@ setTimeout(function timer() {
             connect[i].write(`stop  (${new Date().toUTCString()})`);
             connect[i].end();
         }
-        //connect = [];
-        //count = 0;
+        
         process.exit();
     }
 
