@@ -8,7 +8,7 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "start": "index.js",
+    "start": "DELAY=1000 LIMIT=20 node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
