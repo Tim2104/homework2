@@ -1,9 +1,11 @@
 
 const express = require('express');
-let app = express();
+const app = express();
 
 let connect = [];
 let count = 0;
+const DELAY = process.env.DELAY || 1000
+const LIMIT = process.env.LIMIT || 20
 
 app.get('/', (req, res, next) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -20,13 +22,12 @@ setTimeout(function timer() {
 
     count++;
 
-    if(count > 30) {
+    if(count > LIMIT) {
         for(let i = 0; i < connect.length; i++) {
             connect[i].write(`stop  (${new Date().toUTCString()})`);
             connect[i].end();
         }
-        //connect = [];
-        //count = 0;
+        
         process.exit();
     }
 
@@ -34,5 +35,5 @@ setTimeout(function timer() {
         connect[i].write(`id: ${i} <br>`);
     }
 
-    setTimeout(timer, 1000);
-}, 1000);
+    setTimeout(timer, DELAY);
+}, DELAY);
